@@ -1,0 +1,205 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Conway!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+    </info>
+    <section>
+        <title>Hangyaszimulációk</title>
+        <para>
+            Írj Qt C++-ban egy hangyaszimulációs programot, a forrásaidról utólag reverse engineering jelleggel
+            készíts UML osztálydiagramot is!
+        </para>
+        <para>
+            Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/10/10/myrmecologist">https://bhaxor.blog.hu/2018/10/10/myrmecologist</link>
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://github.com/vargalz/prog1konyv/tree/master/hangya">https://github.com/vargalz/prog1konyv/tree/master/hangya</link>               
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat...
+        </para>     
+<para>
+A hangyák feromonok kibocsájtásával kommunikálnak társaikkal. A szimuláció lényege, hogy a képernyőt cellákra osztjuk. Ezek a cellák rendelkezni fognak feromon erősséggel. Az egyes cellákbna lévő hangyák mindig a legerősebb feromonnal rendelkező szomszéd felé fognak menni.
+</para>  
+<para>
+A futtatáshoz szükségünk lesz a <filename>main.cpp</filename>, <filename>antthread.cpp</filename>, <filename>antwin.cpp</filename> fájlokra,az  ezekhez tartozó header fájlokra és végül a <filename>myrmecologist.pro</filename>-ra.
+Ha egy mappában vannak a fentiek, akkor:
+<programlisting>
+qmake myrmecologist.pro
+make
+./myrmecologist -w 250 -m 150 -n 400 -t 10 -p 5 -f 80 -d 0 -a 255 -i 3 -s 3  -c 22
+</programlisting>
+A program rendelkezik alapértékekkel, így a kapcsolók opcionálisak. De láthatjuk, hogy elég sok kapcsoló van, ezért vizsgáljuk meg, hogy melyik mit csinál.
+A <function>w</function> kapcsoló a cellák szélességét adja meg, az <function>m</function> pedig azok magasságát.
+Az <function>n</function> kapcsoló a hangyák számát határozza meg. 
+A <function>t</function> kapcsoló a hangyák lépéseinek gyakoriságát szabályozza.
+A <function>p</function> kapcsoló a feromon párolgásának gyorsaságát állítjuk.
+Ha egy hangya belép egy cellába, akkor ott növeli fogja a feromon szintet, az <function>f</function> kapcsolóval pedig ezt tudjuk meghatározni.
+A <function>d</function> kapcsolóval az alapérteémezett feromonértéket adjuk meg a celláknak.
+Az <function>a</function> a maximális, az <function>i</function> a minimális feromont szablya meg a celláknak.
+Az <function>s</function> kapcsoló megmondja, hogy a hangyák mennyi feromont hagyjanak a cellákban.
+A <function>c</function> kapcsoló pedig szabályozza, hogy mennyi hangya lehet egyszerre egy celléban.
+</para>
+<para>
+<figure>
+<title>UML diagram</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="img/uml.png"/>
+</imageobject>
+</mediaobject>
+</figure>          
+</para>     
+    </section>        
+    <section>
+        <title>Java életjáték</title>
+        <para>
+            Írd meg Java-ban a John Horton Conway-féle életjátékot, 
+            valósítsa meg a sikló-kilövőt!
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href=""></link>               
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat...
+        </para> 
+<para>
+A siklókilövő lényege, hogy a kezdeti sejteket meghatározott helyre rakjuk, utána pedig folyamatosam "lövi ki" a siklókat felfelé. A fehér cellák üresek, a feketék az elő sejtek.
+Van 3 szabály, amit be kell tartani:
+1.: Egy sejt akkor marad életben,ha 2-3 szomszédja van.
+2.: Egy sejt meghal ha 3-nál több szomszédja van (túlnépesedés), vagy ha 2-nél kevesebb szomszédja van (elszigetelődés).
+3.: Egy sejt akkor születik, ha egy üres cellának 3 élősejt szomszédja van.
+</para> 
+<para>
+A fenti három szabály kód formájában láthatjuk, ezalapján változik az alakzatunk.
+<programlisting language="java"><![CDATA[
+for(int i=0; i<rácsElőtte.length; ++i) { // sorok
+            for(int j=0; j<rácsElőtte[0].length; ++j) { // oszlopok
+                
+                int élők = szomszédokSzáma(rácsElőtte, i, j, ÉLŐ);
+                
+                if(rácsElőtte[i][j] == ÉLŐ) {
+
+                    if(élők==2 || élők==3)
+                        rácsUtána[i][j] = ÉLŐ;
+                    else
+                        rácsUtána[i][j] = HALOTT;
+                }  else {
+
+                    if(élők==3)
+                        rácsUtána[i][j] = ÉLŐ;
+                    else
+                        rácsUtána[i][j] = HALOTT;
+}]]></programlisting>
+</para>  
+        
+    </section>        
+    <section>
+        <title>Qt C++ életjáték</title>
+        <para>
+            Most Qt C++-ban!
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href=""></link>               
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat...
+        </para>   
+<para>
+A siklókilövő grafikus felületen való megjelenítése a cél. Szükeség lesz 4 fájlra: <filename>sejtablak.cpp</filename>, <filename>sejtablak.h</filename>, <filename>sejtszal.cpp</filename> és <filename>sejtszal.h</filename>.
+</para>  
+<para>
+A szabályok nem változtak. Meghal a sejt, ha 2-nél kevesebb vagy 3-nál több szomszédja van, születik, ha a cella rendelkezik 3 élő szomszéddal, 2-3 szomszéddal pedig tovább élnek a sejtek zavartalanul.
+</para> 
+<para>
+<programlisting language="c++"><![CDATA[
+void SejtAblak::sikloKilovo(bool **racs, int x, int y) {
+
+    racs[y+ 6][x+ 0] = ELO;
+    racs[y+ 6][x+ 1] = ELO;
+    racs[y+ 7][x+ 0] = ELO;
+    racs[y+ 7][x+ 1] = ELO;
+
+    racs[y+ 3][x+ 13] = ELO;
+
+    racs[y+ 4][x+ 12] = ELO;
+    racs[y+ 4][x+ 14] = ELO;
+
+    racs[y+ 5][x+ 11] = ELO;
+    racs[y+ 5][x+ 15] = ELO;
+    racs[y+ 5][x+ 16] = ELO;
+    racs[y+ 5][x+ 25] = ELO;
+
+    racs[y+ 6][x+ 11] = ELO;
+    racs[y+ 6][x+ 15] = ELO;
+    racs[y+ 6][x+ 16] = ELO;
+    racs[y+ 6][x+ 22] = ELO;
+    racs[y+ 6][x+ 23] = ELO;
+    racs[y+ 6][x+ 24] = ELO;
+    racs[y+ 6][x+ 25] = ELO;
+
+    racs[y+ 7][x+ 11] = ELO;
+    racs[y+ 7][x+ 15] = ELO;
+    racs[y+ 7][x+ 16] = ELO;
+    racs[y+ 7][x+ 21] = ELO;
+    racs[y+ 7][x+ 22] = ELO;
+    racs[y+ 7][x+ 23] = ELO;
+    racs[y+ 7][x+ 24] = ELO;
+
+    racs[y+ 8][x+ 12] = ELO;
+    racs[y+ 8][x+ 14] = ELO;
+    racs[y+ 8][x+ 21] = ELO;
+    racs[y+ 8][x+ 24] = ELO;
+    racs[y+ 8][x+ 34] = ELO;
+    racs[y+ 8][x+ 35] = ELO;
+
+    racs[y+ 9][x+ 13] = ELO;
+    racs[y+ 9][x+ 21] = ELO;
+    racs[y+ 9][x+ 22] = ELO;
+    racs[y+ 9][x+ 23] = ELO;
+    racs[y+ 9][x+ 24] = ELO;
+    racs[y+ 9][x+ 34] = ELO;
+    racs[y+ 9][x+ 35] = ELO;
+
+    racs[y+ 10][x+ 22] = ELO;
+    racs[y+ 10][x+ 23] = ELO;
+    racs[y+ 10][x+ 24] = ELO;
+    racs[y+ 10][x+ 25] = ELO;
+
+    racs[y+ 11][x+ 25] = ELO;
+
+}
+}]]></programlisting>
+Ez az eljárás létrehozza a siklókillövőnket
+</para>      
+    </section>        
+    <section>
+        <title>BrainB Benchmark</title>
+        <para>
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://github.com/nbatfai/esport-talent-search"></link>               
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat...
+        </para> 
+<para>
+A benchmarknak célja, hogy felmérje az ember kognitív képességeit. Az játéknak a lényege az, hogy a kurzort rajta kell tartanunk a Samu Entropy-n, amíg egyre több New Entropy fog megjelenni, ha elveszítjuk Samut, a New Entropy szaporodás lelassul, így könnyebben megtalálhatod. A teszt 10 perces. Minél bonyolultabb képet kapsz a végén, annál jobb vagy.
+</para>     
+<para>
+
+</para>      
+    </section>        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+</chapter>                

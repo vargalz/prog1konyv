@@ -1,0 +1,107 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Gutenberg!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+        <cover>
+            <para>
+                Programozás tankönyvek rövid olvasónaplói.
+            </para>
+        </cover>
+    </info>
+    <section>
+        <title>Programozási alapfogalmak</title>
+        <para>         
+            <citation>PICI</citation>       
+        </para>
+<para>
+Alapfogalmak
+</para>
+<para>
+A programozási nyelveknek három szintjük van. Gépi nyelv, assembly szintû nyelv és magas szintû nyelv. A magas szinten írt program forrásprogramnak hívjuk, az ezekre
+vonatkozó szabályokat pedig szintaktikai szabálynak nevezzük. A nyelvtani és formai szabályok a szintaktikai szabályok. Ahhoz, hogy egy proceszor értelmezni tudja a 
+kódunkat, interpreterre vagy fordítóprogramra van szüksége. Mindkettõ végez szintaktikai és lexolális elemzést. A szintaktikai elemzés megnézi, hogy teljesülnek-e a
+a szintaktikai szabályok, a lexikális elmezás pedig felbontja a forrást lexikális egységekre. Hogy helyesen írjunk meg egy programot tisztában kell lennünk a nyelv 
+szabványaival. Napjaink problámja a nyelvek hordozhatósága, azaz egy magas szintû nyelv másik magas szintû nyelvbe való implementációja
+</para>
+<para>
+Adattípusok
+</para>
+<para>
+ Az adattípus konkrét programozási eszközök komponenseként jelenik meg. Meghatározó dolog az adattípusok világában a reprezentáció, azaz egyfajta belső ábrázolási mód. Saját reprezentációt megadni azonban csak nagyon kevés programozási nyelvben lehet. Az adattípusok két nagy csoportja az egyszerű és az összetett adattípusok.
+</para>
+<para>
+Változók
+</para>
+<para>
+Az imperatív programozási nyelvek fő eszköze, négy komponense van: név, attribútumok, cím, érték. A változó mindig a nevével jelenik meg, a másik három komponenst a névhez rendeljük hozzá.Az eljárásorientált nyelvek leggyakoribb utasítása az értékadó utasítás (pl.: C)
+</para>
+<para>
+Kifejezés
+</para>
+<para>
+Szintaktikai eszköz, két komponense az érték és a típus. Összetevői: operandusok, operátorok, és a kerek zárójelek. A kifejezés kiértékelésének nevezzük azt a folyamatot, amikor a kifejezés értéke és típusa meghatározódik.
+</para>
+<para>
+Utasítások
+</para>
+<para>
+Olyan egységek, amelyekkel megadjuk az algoritmusok lépéseit és amely segítségével a fordítóprogram tárgyprogramot generálhat. Két nagy csoport: deklarációs és végrehajtható utasítások.
+</para>
+    </section>        
+    <section>
+        <title>Programozás bevezetés</title>
+        <para>                
+            <citation>KERNIGHANRITCHIE</citation>
+        </para>
+<para>
+Ez a könyv az alapoktól indít. Megismerkedünk a változók fogalmával és típusaival (pl.: int, double, char), méretével. Ezekből az egyszerű típusokból épülnek fel a tömbök és struktúrák. Ezenkívül megismerkedünk a - for és while- ciklusokkal. Bemutatja az aritmetikai és logogikai operátorokat, a deklarációt. Inkrementálás éés dekrementálás.
+</para>      
+<para>
+Ezek után a vezérlési szerkezeteket ismerteti a könyv. If-else és fodrdítva, break, goto, címkék és switch.
+</para>
+<para>
+Egyszerű függvények és az azokhoz tartozó  fogalmak, külső változók, a header állomány, Változó inicializálás és statikus változó. Blokkstruktúrák és rekurzió. Ezekről mind szót ejt a negyedik fejezet.
+</para>
+<para>
+Megismerkedünk a mutatókkal, ami egy C nyelvet tanító könyhöz elmaradhatatlan. Mutatótömbök, mutatókra mutató mutatók és többdimenziós tömbök bemutatása. Függvények és struktúrák bemutatása. Struktúratömbök,önhivatkozó struktúra, typedef parancsok.
+</para>
+<para>
+Az adat be- és kivitelről is tanulhatunk a könyvből. Először természetesen a standard inputtak és outputtal ismerkedünk meg. Majd kitér a printf() és scanf() függvénykre és használatára. Mivel szó van a beolvasásról, így szót ejt a fejezet a hibakezelésről is a standard error(stderr) és exit formájában.
+</para>
+    </section>        
+    <section>
+        <title>Programozás</title>
+        <para>                
+            <citation>BMECPP</citation>
+        </para>
+<para>
+A C++ tulajdonképpen a C nyelv továbbfejlesztése, ami az objektumorientált porgramozást tette lehetõvé. A nyelv
+atyjának Bjarne Stroustrup-t tekintjük, mivel õ fejlesztette ki a '80-as években. Ami C kód az C++ is egyben,
+de ez fordítva már nem igaz. Azt is mondhatnánk, hogy C nyelv részhalmaza a C++-nak.
+</para>
+<para>
+C++-ban a main függvényt megadhatjuk simán 'int main()'-ként, de 'int main (int argc, char* argv[])'-ként is. Az
+argc parancssori argumentumok száma, az argv pedig a maga a parancssori argumentum. Ha  a main függvényünk
+végén elhagyjuk a return-t, akkor a fordító automatikusan 'return 0'-nak értelmezi majd.
+</para>
+<para>
+Nézzük meg a boolean típusú változókat. Ilyen típus sima C-ben még nem létezett, ezért int vagy enum típust
+használunk helyette. Ezek két értéket vehetnek fel: true, false.
+</para>
+<para>
+C++-ban lehetõségünk nyílik a változók deklarálására egy ciklus megadása közben, ám ez csak a ciklus keretein
+belül fog élni.
+</para>
+<para>
+C-ben nem tehettük meg, hogy két függvénynek ugyanazt a nevet adjuk. A C++-szal más a helyzet, mivel a függvény
+itt már a függvény neve és a hozzátartozó argumentumlista azonosítja be a függvényt. C++-ban adhtunk a függvényeinknek
+alapértelmezett értékeket.
+</para>
+<para>
+Amíg C-ben a paraméterátadás érték szerint történt, C++-ban ez referenciatípussal történik. Nem szabad összekevrnünk a mutatót és a refernciát. A
+mutató egy memóriacímet kap, aminek segítségével hozzáférünk a változóhoz és változtathtajuk azt.
+</para>
+    </section>        
+</chapter>                
